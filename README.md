@@ -1,6 +1,8 @@
 # PHP ISO-639
 
 [![Build Status](https://travis-ci.org/matriphe/php-iso-639.svg)](https://travis-ci.org/matriphe/php-iso-639)
+[![Total Download](https://img.shields.io/packagist/dt/matriphe/iso-639.svg)](https://packagist.org/packages/matriphe/iso-639)
+[![Latest Stable Version](https://img.shields.io/packagist/v/matriphe/iso-639.svg)](https://packagist.org/packages/matriphe/iso-639)
 
 PHP library to convert ISO-639-1 code to language name, based on Wikipedia's [List of ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
@@ -12,7 +14,9 @@ Using composer: `composer require matriphe/iso-639`
 
 ```php
 <?php
-required 'src/ISO639.php'
+
+required 'src/ISO639.php';
+//required 'vendor/autoload.php'; // If using composer
 
 $iso = new Matriphe\ISO639\ISO639;
 
@@ -56,6 +60,10 @@ echo $iso->nativeByCode3('eng'); // English
 echo $iso->nativeByCode3('ind'); // Bahasa Indonesia
 echo $iso->nativeByCode3('jav'); // basa Jawa
 
+// Get language array from ISO-639-2b code
+echo $iso->getLanguageByIsoCode2b('eng'); // ['en', 'eng', 'eng', 'eng', 'English', 'English']
+echo $iso->getLanguageByIsoCode2b('ind'); // ['id', 'ind', 'ind', 'ind', 'Indonesian', 'Bahasa Indonesia']
+echo $iso->getLanguageByIsoCode2b('jav'); // ['jv', 'jav', 'jav', 'jav', 'Javanese', 'basa Jawa']
 ```
 
 ## To Do

@@ -1,4 +1,5 @@
 <?php
+
 namespace Matriphe\ISO639;
 
 class ISO639
@@ -192,9 +193,26 @@ class ISO639
         array('yi', 'yid', 'yid', 'yid', 'Yiddish', 'ייִדיש'),
         array('yo', 'yor', 'yor', 'yor', 'Yoruba', 'Yorùbá'),
         array('za', 'zha', 'zha', 'zha', 'Zhuang, Chuang', 'Saɯ cueŋƅ, Saw cuengh'),
-        array('zu', 'zul', 'zul', 'zul', 'Zulu', 'isiZulu')
+        array('zu', 'zul', 'zul', 'zul', 'Zulu', 'isiZulu'),
     );
-    
+
+    public $indexIso639_1 = 0;
+    public $indexIso639_2t = 1;
+    public $indexIso639_2b = 2;
+    public $indexIso639_3 = 3;
+    public $indexEnglishName = 4;
+    public $indexNativeName = 5;
+
+    /*
+     * Get all language data
+     *
+     * @return (array)
+    */
+    public function allLanguages()
+    {
+        return $this->languages;
+    }
+
     /*
      * Get language name from ISO-639-1 (two-letters code)
      *
@@ -202,20 +220,17 @@ class ISO639
      */
     public function languageByCode1($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[0] == $code) {
-                $result = $lang[4];
-                break;
+            if ($lang[$this->indexIso639_1] === $code) {
+                return $lang[$this->indexEnglishName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get native language name from ISO-639-1 (two-letters code)
      *
@@ -223,20 +238,17 @@ class ISO639
      */
     public function nativeByCode1($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[0] == $code) {
-                $result = $lang[5];
-                break;
+            if ($lang[$this->indexIso639_1] === $code) {
+                return $lang[$this->indexNativeName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get language name from ISO-639-2/t (three-letter codes) terminologic
      *
@@ -244,20 +256,17 @@ class ISO639
      */
     public function languageByCode2t($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[1] == $code) {
-                $result = $lang[4];
-                break;
+            if ($lang[$this->indexIso639_2t] === $code) {
+                return $lang[$this->indexEnglishName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get native language name from ISO-639-2/t (three-letter codes) terminologic
      *
@@ -265,20 +274,17 @@ class ISO639
      */
     public function nativeByCode2t($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[1] == $code) {
-                $result = $lang[5];
-                break;
+            if ($lang[$this->indexIso639_2t] === $code) {
+                return $lang[$this->indexNativeName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get language name from ISO-639-2/b (three-letter codes) bibliographic
      *
@@ -286,20 +292,17 @@ class ISO639
      */
     public function languageByCode2b($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[2] == $code) {
-                $result = $lang[4];
-                break;
+            if ($lang[$this->indexIso639_2b] === $code) {
+                return $lang[$this->indexEnglishName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get native language name from ISO-639-2/b (three-letter codes) bibliographic
      *
@@ -307,20 +310,17 @@ class ISO639
      */
     public function nativeByCode2b($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[2] == $code) {
-                $result = $lang[5];
-                break;
+            if ($lang[$this->indexIso639_2b] === $code) {
+                return $lang[$this->indexNativeName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get language name from ISO-639-3 (three-letter codes)
      *
@@ -328,20 +328,17 @@ class ISO639
      */
     public function languageByCode3($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[3] == $code) {
-                $result = $lang[4];
-                break;
+            if ($lang[$this->indexIso639_3] === $code) {
+                return $lang[$this->indexEnglishName];
             }
         }
-        
-        return $result;
+
+        return '';
     }
-    
+
     /*
      * Get native language name from ISO-639-3 (three-letter codes)
      *
@@ -349,17 +346,108 @@ class ISO639
      */
     public function nativeByCode3($code)
     {
-        $code = strtolower($code);
-        
-        $result = '';
-        
+        $code = strtolower(trim($code));
+
         foreach ($this->languages as $lang) {
-            if ($lang[3] == $code) {
-                $result = $lang[5];
+            if ($lang[$this->indexIso639_3] === $code) {
+                return $lang[$this->indexNativeName];
+            }
+        }
+
+        return '';
+    }
+
+    /*
+     * Get ISO-639-1 (two-letters code) from language name
+     *
+     * @return (string)
+     */
+    public function code1ByLanguage($language)
+    {
+        $language_key = ucwords(strtolower($language));
+
+        foreach ($this->languages as $lang) {
+            if (in_array($language_key, explode(', ', $lang[$this->indexEnglishName]))) {
+                return $lang[$this->indexIso639_1];
+            }
+        }
+
+        return '';
+    }
+
+    /*
+     * Get ISO-639-2/t (three-letter codes) terminologic from language name
+     *
+     * @return (string)
+     */
+    public function code2tByLanguage($language)
+    {
+        $language_key = ucwords(strtolower($language));
+
+
+        foreach ($this->languages as $lang) {
+            if (in_array($language_key, explode(', ', $lang[$this->indexEnglishName]))) {
+                return $lang[$this->indexIso639_2t];
+            }
+        }
+
+        return '';
+    }
+
+    /*
+     * Get ISO-639-2/b (three-letter codes) bibliographic from language name
+     *
+     * @return (string)
+     */
+    public function code2bByLanguage($language)
+    {
+        $language_key = ucwords(strtolower($language));
+
+        foreach ($this->languages as $lang) {
+            if (in_array($language_key, explode(', ', $lang[$this->indexEnglishName]))) {
+                return $lang[$this->indexIso639_2b];
                 break;
             }
         }
-        
-        return $result;
+
+        return '';
     }
+
+    /*
+     * Get ISO-639-3 (three-letter codes) from language name
+     *
+     * @return (string)
+     */
+    public function code3ByLanguage($language)
+    {
+        $language_key = ucwords(strtolower($language));
+
+        foreach ($this->languages as $lang) {
+            if (in_array($language_key, explode(', ', $lang[$this->indexEnglishName]))) {
+                return $lang[$this->indexIso639_3];
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * Gat language array from ISO-639-2/b (three-letter code)
+     *
+     * @param $code
+     * @return array|null
+     */
+    public function getLanguageByIsoCode2b($code)
+    {
+        $code = strtolower(trim($code));
+
+        foreach ($this->languages as $lang) {
+            if ($lang[$this->indexIso639_2b] === $code) {
+                return $lang;
+            }
+        }
+
+        return null;
+    }
+
 }
